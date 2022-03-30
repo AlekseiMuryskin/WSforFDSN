@@ -1,1124 +1,171 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    
-      <title>
-        
-          IRIS: 
-  
-  
-
-  
-    FDSNWS: 
-  
-
-  
-    Station: 
-  
-
-  
-    Docs: 
-  
-
-  
-    v. 1: 
-  
-
-  
-    Builder
-  
-
-
-
-        
-      </title>
-      
-  <meta name="keywords" content="seismology, seismological data,
-  earthquakes, iris dmc" />
-  <!-- Forces IE to render in 'latest' compatible mode -->
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
-
-
-
-
-
-
-      
-  <link rel="stylesheet" media="all" type="text/css" href="/static/css/iris.css" />
-
-  <link rel="stylesheet" media="print" type="text/css" href="/static/css/print.css" />
-  
-  
-
-  
-    <link rel="shortcut icon" href="/static/img/favicon.ico" />
-  
-
-      
-  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
-  <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  
-    <!--
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="/static/libs/megamenu/megamenu_plugins.js"></script>
-    <script type="text/javascript" src="/static/libs/megamenu/megamenu.min.js"></script>
-    -->
-  
-
-  
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1860730-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-1860730-1');
-    </script>
-  
-
-  
-    <link rel="stylesheet" type="text/css" href="/static/libs/qtip2/2.1.1/jquery.qtip.css" />
-    <script type="text/javascript" src="/static/libs/qtip2/2.1.1/jquery.qtip.js"></script>
-    <script>
-      $(function() {
-        /* Automatically set up popup help blocks like:
-         * <div class="popup-help">
-         *   <span class="glyphicon glyphicon-question-sign"> </span>
-         *   <div>
-         *      Content to show in the popup.
-         *   </div>
-         * </div>
-         * Hovering over the icon shows the content in a popup.
-         */
-        $(".popup-help").each(function() {
-          var content = $(this).children('div').detach();
-          var popupOnClick = $(this).hasClass('popup-on-click');
-          // Attach to the first element
-          $(this).children().first().qtip({
-            content: { text: content },
-            style: { classes: 'qtip-bootstrap' },
-            hide: {
-              delay: 100,
-              fixed: true
-            },
-            show: {
-              event: popupOnClick ? 'click' : 'mouseenter'
-            },
-            position: {
-              viewport: $(window)
-            },
-          });
-        });
-      });
-    </script>
-  
-
-
-      
-  
-  
-  <!-- START: Syntax highlighting -->
-  <link rel="stylesheet"
-        type="text/css"
-        href="/static/libs/prettify/r298/css/prettify.css" />
-  <script type="text/javascript"
-          src="/static/libs/prettify/r298/js/prettify.js">
-  </script>
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="gempa GmbH">
+  <title>SeisComP FDSNWS - Station</title>
+  <link rel="stylesheet" type="text/css" href="../../css/fdsnws.css">
+  <link rel="stylesheet" type="text/css" href="../../js/tcal/tcal.css">
+  <script type="text/javascript" src="../../js/tcal/tcal.js"></script>
+  <script type="text/javascript" src="../../js/fdsnws-query.js"></script>
   <script type="text/javascript">
-  $(document).ready(function(){
-    prettyPrint();
-  });
+    A_TCALCONF['format'] = 'Y-m-dT00:00:00';
+
+    window.onload = fdsnwsInitQueryForm;
   </script>
-  <!-- END: Syntax highlighting -->
-
-  <link rel="stylesheet" type="text/css" href="/static/css/jquery-ui-iris-theme/jquery-ui-1.8.23.custom.css" />
-  <link rel="stylesheet" type="text/css" href="/static/webservicedoc/css/services.css" />
-  <link rel="stylesheet" type="text/css" href="/static/webservicedoc/css/prism.css" />
-  <script type="text/javascript" src="/static/webservicedoc/js/datacite-references.js"></script>
-  <script type="text/javascript" src="/static/webservicedoc/js/prism.js"></script>
-
-  <!-- START: EXTRA-JS -->
-  <script type="text/javascript"
-          src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js">
-  </script>
-  <script type="text/javascript"
-          src="/static/calendar/jquery-ui-timepicker-addon-1.6.1.js">
-  </script>
-  <script type="text/javascript"
-          src="/static/webservicedoc/js/builder.js">
-  </script>
-  <!-- END: EXTRA-JS -->
-  <!-- START: EXTRA-CSS -->
-  <!-- <link type="text/css"
-        rel="stylesheet"
-        media="screen"
-        href="/static/webservicedoc/css/jquery-ui-1.9.2.custom.css"> -->
-  <link type="text/css"
-        rel="stylesheet"
-        media="screen"
-        href="/static/calendar/jquery-ui-timepicker-addon-1.6.1.css">
-  <link type="text/css"
-        rel="stylesheet"
-        media="screen"
-        href="/static/webservicedoc/css/builder.css">
-  <!-- END: EXTRA-CSS -->
-
-    
-  </head>
-
-  <body>
-  
-
-    
-
-<div class="iris-purple">
-  <div class="container" style="position: relative">
-    <div class="row">
-      <div class="col-sm-4 col-md-3 hidden-xs header-nsf-logo">
-        <a target="_blank" href="https://nsf.gov/">
-          <img src="https://www.iris.edu/hq/images/layout/logos/nsf-x1.png" alt="NSF logo image"
-            height="70"
-            srcset="https://www.iris.edu/hq/images/layout/logos/nsf-x1.png 1x,
-            https://www.iris.edu/hq/images/layout/logos/nsf-x1.5.png 1.5x,
-            https://www.iris.edu/hq/images/layout/logos/nsf-x2.png 2x"
-            /></a><div></div><a target="_blank" href="https://www.iris.edu/hq/sage"
-          ><img src="https://www.iris.edu/hq/images/layout/logos/sage-x1.png" alt="SAGE logo image"
-          height="70"
-          srcset="https://www.iris.edu/hq/images/layout/logos/sage-x1.png 1x,
-          https://www.iris.edu/hq/images/layout/logos/sage-x1.5.png 1.5x,
-          https://www.iris.edu/hq/images/layout/logos/sage-x2.png 2x"
-          >
-        </a>
-      </div>
-      <div class="col-sm-8 col-md-9">
-        <div class="header-iris-logo">
-          <a target="_blank" alt="IRIS logo" title="Incorporated Research Institutions for Seismology" href="https://www.iris.edu/hq/">
-            <img src="https://www.iris.edu/hq/images/layout/logos/iris_white_screen_lrg-x1.png" alt="IRIS logo image" 
-            style="vertical-align: baseline;" height="72"
-            srcset="https://www.iris.edu/hq/images/layout/logos/iris_white_screen_lrg-x1.png 1x,
-            https://www.iris.edu/hq/images/layout/logos/iris_white_screen_lrg-x1.5.png 1.5x,
-            https://www.iris.edu/hq/images/layout/logos/iris_white_screen_lrg-x2.png 2x"
-            />
-          </a>
-          <span class="hidden-xs" style="margin-left: 5px;">
-            Incorporated Research Institutions for Seismology
-          </span>
-        </div>
-      </div>
-    </div>
+</head>
+<body>
+  <p><a href="./">Parent Directory</a></p>
+  <h1>SeisComP FDSNWS Station</h1>
+  <form id="query-form" action="" method="POST">
+  <fieldset>
+    <legend>Time constraints</legend>
+    <table class="builder">
+      <tbody>
+        <tr>
+          <td>Start Time</td>
+          <td><input type="date" size="10" maxlength="26" name="startdate" value="" class="tcal"/></td>
+        </tr>
+        <tr>
+          <td>End Time</td>
+          <td><input type="date" size="10" maxlength="26" name="enddate" value="" class="tcal"/></td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+  <fieldset>
+    <legend>Channel constraints</legend>
+    <table class="builder">
+      <tbody>
+        <tr>
+          <td>Network</td>
+          <td><input type="text" size="10" name="network" value="" placeholder="AB,C?" /></td>
+        </tr>
+        <tr>
+          <td>Station</td>
+          <td><input type="text" size="10" name="station" value="" placeholder="ABC,D*" /></td>
+        </tr>
+        <tr>
+          <td>Location</td>
+          <td><input type="text" size="10" name="location" value="" placeholder="00" /></td>
+        </tr>
+        <tr>
+          <td>Channel</td>
+          <td><input type="text" size="10" name="channel" value="" placeholder="BH?" /></td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+  <fieldset>
+    <legend>Geographic constraints</legend>
+    <input type="radio" id="loc-none" name="location1" value="non"><label for="loc-none">None</label><br>
+    <input type="radio" id="loc-bbox" name="location1" value="box"><label for="loc-bbox">Bounding Box</label><br>
+    <input type="radio" id="loc-circle" name="location1" value="cir"><label for="loc-circle">Circle</label><br>
+    <table class="builder" id="loc-bbox-input">
+      <tbody>
+        <tr>
+          <td>Minimum Latitude</td>
+          <td><input type="number" name="minlatitude" min="-90" max="90" step="1" value="" placeholder="-90.0" /></td>
+        </tr>
+        <tr>
+          <td>Maximum Latitude</td>
+          <td><input type="number" name="maxlatitude" min="-90" max="90" step="1" value="" placeholder="90.0" /></td>
+        </tr>
+        <tr>
+          <td>Minimum Longitude</td>
+          <td><input type="number" name="minlongitude" min="-180" max="180" step="1" value="" placeholder="-180.0" /></td>
+        </tr>
+        <tr>
+          <td>Maximum Longitude</td>
+          <td><input type="number" name="maxlongitude" min="-180" max="180" step="1" value="" placeholder="180.0" /></td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="builder" id="loc-circle-input">
+      <tbody>
+        <tr>
+          <td>Latitude</td>
+          <td><input type="number" name="latitude" min="-90" max="90" step="1" value="" placeholder="0.0" /></td>
+        </tr>
+        <tr>
+          <td>Longitude</td>
+          <td><input type="number" name="longitude" min="-180" max="180" step="1" value="" placeholder="0.0" /></td>
+        </tr>
+        <tr>
+          <td>Minimum Radius</td>
+          <td><input type="number" name="minradius" min="0" max="180" step="1" value="" placeholder="0.0" /></td>
+        </tr>
+        <tr>
+          <td>Maximum Radius</td>
+          <td><input type="number" name="maxradius" min="0" max="180" step="1" value="" placeholder="180" /></td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+  <fieldset>
+    <legend>Service specific constraints</legend>
+    <table class="builder">
+      <tbody>
+        <tr>
+          <td>Level</td>
+          <td>
+            <select name="level">
+              <option value="network">Network</option>
+              <option value="station" selected="selected">Station (default)</option>
+              <option value="channel">Channel</option>
+              <option value="response">Response</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Exclude Restricted Channels</td>
+          <td><input type="checkbox" name="includerestricted" value="false" /></td>
+        </tr>
+        <tr>
+          <td>Include Data Availability</td>
+          <td><input type="checkbox" name="includeavailability" value="true" /></td>
+        </tr>
+        <tr>
+          <td>Update After</td>
+          <td><input type="text" size="10" maxlength="26" name="updateafter" value="" class="tcal" disabled="disabled" /></td>
+        </tr>
+        <tr>
+          <td>Match Time Series</td>
+          <td><input type="checkbox" name="matchtimeseries" value="true" /></td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+  <fieldset>
+    <legend>Output control</legend>
+    <table class="builder">
+      <tbody>
+        <tr>
+          <td>Format</td>
+          <td>
+            <select name="format">
+              <!--option value="">FDSN Station XML (default)</option-->
+              <!--option value="text">Text (| delimited)</option-->
+              <option value="STATIONXML">Station XML</option>
+              <option value="STATIONTXT">Station TXT</option>
+              <option value="SACPZ">SACPZ</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Formatted</td>
+          <td><input type="checkbox" name="formatted" value="true" /></td>
+        </tr>
+        <tr>
+          <td>No Data 404</td>
+          <td><input type="checkbox" name="nodata" value="404" checked="checked" /></td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">Submit</button>
   </div>
-</div>
-
-
-    
-
-
-    <div class="container blur">
-      <div id="breadcrumbs">
-      
-        <ul class="breadcrumbs">
-          
-            
-              <li>
-                <a href="/">Web Services</a>
-              </li>
-            
-              <li>
-                <a href="/fdsnws/">FDSNWS</a>
-              </li>
-            
-              <li>
-                <a href="/fdsnws/station/">Station</a>
-              </li>
-            
-              <li>
-                <a href="/fdsnws/station/docs/">Docs</a>
-              </li>
-            
-              <li>
-                <a href="/fdsnws/station/docs/1/">v. 1</a>
-              </li>
-            
-              <li>
-                <a href="/fdsnws/station/docs/1/builder/">Builder</a>
-              </li>
-            
-          
-        </ul>
-      
-      </div>
-
-      
-    
-  
-
-              
-              
-
-              <div id="page-content">
-
-                
-                  
-
-
-                  
-
-
-                
-
-                
-                  
-                
-
-                
-
-                  <h1>
-                  
-  URL Builder:
-  station
-  v.1
-
-                  </h1>
-                  
-                  
-
-                  <div id="content">
-                    
-
-  <!-- START: BUTTON GROUP -->
-<div class="btn-group p-margin">
-    
-      <a class="btn btn-default"
-    
-    href="/fdsnws/station/1/">Service interface</a>
-
-  
-    
-      <a class="btn btn-default active"
-    
-    href="/fdsnws/station/docs/1/builder/">URL Builder</a>
-  
-
-  
-    <a class="btn btn-default"
-  
-  href="/fdsnws/station/docs/1/help/">Help</a>
-
-  
-    <a class="btn btn-default"
-  
-  href="/fdsnws/station/docs/1/revisions/">Revisions</a>
-
-</div>
-<!-- END: BUTTON GROUP -->
-
-
-  <div class="row p-margin">
-    <div class="col-xs-12 col-sm-9 col-md-10">
-
-
-      
-        <p>Use
-          <a href="" 
-            class="use-builder-query"
-            title="Link to the current query in the builder (experimental)"
-          >this form</a>
-          to build a URL to the
-          <strong>station</strong>
-          web service. Notice that as you edit the form,
-          the link is automatically updated.
-        </p>
-      
-    </div>
-    <div class="col-xs-12 col-sm-3 col-md-2">
-      <a href="#dialog" role="button" class="btn btn-default" data-toggle="modal"><i class="glyphicon glyphicon-question-sign"></i> Usage</a>
-    </div>
-  </div>
-
-  
-  
-    <!-- {{{ START: WS-STATION -->
-
-<script type="text/javascript"
-        src="//cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.js">
-</script>
-<link type="text/css"
-      rel="stylesheet"
-      media="screen"
-      href="//cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.css">
-
-  <!-- {{{ START: FORM -->
-  <form id="builder-form"
-        action="/fdsnws/station/1/query"
-        method="get"
-        class="form-inline">
-
-    <div class="row">
-      <div class="col-xs-12 col-md-6">
-
-        <fieldset>
-          <!-- {{{ START: NETWORK -->
-          <div id="net-row" class="row">
-            <div class="col-xs-4 col-sm-3">
-              <label for="net">Network:</label>
-            </div>
-            <div class="col-xs-8 col-sm-9">
-              <input type="text"
-                     class="form-control"
-                     id="net"
-                     name="net"
-                     placeholder="IU" />
-            </div>
-          </div>
-          <!-- }}} END: NETWORK -->
-
-          <!-- {{{ START: STATION -->
-          <div id="sta-row" class="row">
-            <div class="col-xs-4 col-sm-3">
-              <label for="sta">Station:</label>
-            </div>
-            <div class="col-xs-8 col-sm-9">
-              <input type="text"
-                     class="form-control"
-                     id="sta"
-                     name="sta"
-                     placeholder="ANMO" />
-            </div>
-          </div>
-          <!-- }}} END: STATION -->
-
-          <!-- {{{ START: LOCATION -->
-          <div id="loc-row" class="row">
-            <div class="col-xs-4 col-sm-3">
-              <label for="loc">Location:</label>
-            </div>
-            <div class="col-xs-8 col-sm-9">
-              <input type="text"
-                     class="form-control"
-                     id="loc"
-                     name="loc"
-                     placeholder="00" />
-            </div>
-          </div>
-          <!-- }}} END: LOCATION -->
-
-          <!-- {{{ START: CHANNEL -->
-          <div id="cha-row" class="row">
-            <div class="col-xs-4 col-sm-3">
-              <label for="cha">Channel:</label>
-            </div>
-            <div class="col-xs-8 col-sm-9">
-              <input type="text"
-                     class="form-control"
-                     id="cha"
-                     name="cha"
-                     placeholder="LH?,BH*" />
-            </div>
-          </div>
-          <!-- }}} END: CHANNEL -->
-
-          <!-- {{{ START: START TIME -->
-          <div id="starttime-row" class="row">
-            <div class="col-xs-12 col-sm-3">
-              <label for="starttime-check">Start Time:</label>
-            </div>
-            <div class="col-xs-12 col-sm-9">
-              <input type="checkbox"
-                     id="starttime-check" checked="checked" />
-              <input type="text"
-                     id="starttime"
-                     name="starttime"
-                     placeholder="2011-06-07T07:00:00"
-                     class="form-control datetime-input" />
-            </div>
-          </div>
-          <!-- }}} END: START TIME -->
-
-          <!-- {{{ START: END TIME -->
-          <div id="endtime-row" class="row">
-            <div class="col-xs-12 col-sm-3">
-              <label for="endtime-check">End Time:</label>
-            </div>
-            <div class="col-xs-12 col-sm-9">
-              <div style="display:inline-block"> 
-              <input type="checkbox"
-                     id="endtime-check" checked="checked" />
-              <input type="text"
-                     id="endtime"
-                     name="endtime"
-                     placeholder="2011-06-07T07:00:00"
-                     class="form-control datetime-input" />
-              </div>
-            </div>
-          </div>
-          <!-- }}} END: END TIME -->
-
-          <!-- {{{ START: LEVEL -->
-          <div id="level-row" class="row">
-            <div class="col-xs-4  col-sm-3">
-              <label for="level-check">Level:</label>
-            </div>
-            <div class="col-xs-8 col-sm-9">
-              <select id="level" name="level" class="form-control">
-                <option value="network">network</option>
-                <option value="station" selected="selected">station</option>
-                <option value="channel">channel</option>
-                <option value="response">response</option>
-              </select>
-            </div>
-          </div>
-          <!-- }}} END: LEVEL -->
-
-          <!-- {{{ START: FORMAT -->
-          <div id="format-row" class="row">
-            <div class="col-xs-4  col-sm-3">
-              <label for="format">Format:</label>
-            </div>
-            <div class="col-xs-8 col-sm-9">
-              <select id="format" name="format" class="form-control">
-                <option value="xml">StationXML</option>
-                <option value="geocsv">GeoCSV</option>
-                <option value="text">Text (| delimited)</option>
-              </select>
-            </div>
-          </div>
-          <!-- }}} END: FORMAT -->
-        </fieldset>
-
-        <!-- {{{ START: ADVANCED-SEARCH -->
-
-        <fieldset>
-
-          <legend>Advanced search:</legend>
-
-          <!-- {{{ START: START BEFORE -->
-          <div id="startbefore-row" class="row">
-            <div class="col-xs-12 col-sm-3">
-              <label for="startbefore-check">Start Before:</label>
-            </div>
-            <div class="col-xs-12 col-sm-9">
-              <input type="checkbox"
-                      id="startbefore-check" />
-              <input type="text"
-                     id="startbefore"
-                     name="startbefore"
-                     placeholder=""
-                     class="form-control datetime-input" />
-            </div>
-          </div>
-          <!-- }}} END: START BEFORE -->
-
-          <!-- {{{ START: START AFTER -->
-          <div id="startafter-row" class="row">
-            <div class="col-xs-12 col-sm-3">
-              <label for="startafter-check">Start After:</label>
-            </div>
-            <div class="col-xs-12 col-sm-9">
-              <input type="checkbox"
-                     id="startafter-check" />
-              <input type="text"
-                     id="startafter"
-                     name="startafter"
-                     placeholder=""
-                     class="form-control datetime-input" />
-            </div>
-          </div>
-          <!-- }}} END: START AFTER -->
-
-          <!-- {{{ START: END BEFORE -->
-          <div id="endbefore-row" class="row">
-            <div class="col-xs-12 col-sm-3">
-              <label for="endbefore-check">End Before:</label>
-            </div>
-            <div class="col-xs-12 col-sm-9">
-              <input type="checkbox"
-                     id="endbefore-check" />
-              <input type="text"
-                     id="endbefore"
-                     name="endbefore"
-                     placeholder=""
-                     class="form-control datetime-input" />
-            </div>
-          </div>
-          <!-- }}} END: END BEFORE -->
-
-          <!-- {{{ START: END AFTER -->
-          <div id="endafter-row" class="row">
-            <div class="col-xs-12 col-sm-3">
-              <label for="endafter-check">End After:</label>
-            </div>
-            <div class="col-xs-12 col-sm-9">
-              <input type="checkbox"
-                     id="endafter-check" />
-              <input type="text"
-                     id="endafter"
-                     name="endafter"
-                     placeholder=""
-                     class="form-control datetime-input" />
-            </div>
-          </div>
-          <!-- }}} END: END AFTER -->
-
-          <!-- {{{ START: UPDATED AFTER -->
-          <div id="updatedafter-row" class="row">
-            <div class="col-xs-12 col-sm-3">
-              <label for="updatedafter-check">Updated After:</label>
-            </div>
-            <div class="col-xs-12 col-sm-9">
-              <input type="checkbox"
-                     id="updatedafter-check" />
-              <input type="text"
-                     id="updatedafter"
-                     name="updatedafter"
-                     placeholder=""
-                     class="form-control datetime-input" />
-            </div>
-          </div>
-          <!-- }}} END: UPDATED AFTER -->
-
-          <!-- {{{ START: SENSOR MATCH -->
-          <div id="sensor-row" class="row">
-            <div class="col-xs-3">
-              <label for="sensor-check">Sensor:</label>
-            </div>
-            <div class="col-xs-9">
-              <input type="checkbox"
-                     id="sensor-check" />
-              <input type="text"
-                     id="sensor"
-                     name="sensor"
-                     placeholder=""
-                     class="form-control" />
-            </div>
-          </div>
-          <!-- }}} END: SENSOR MATCH -->
-
-        </fieldset>
-
-        <!-- }}} END: ADVANCED-SEARCH -->
-
-      </div>
-
-      <div class="col-xs-12 col-md-6">
-
-        
-
-
-
-
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=quarterly&key=AIzaSyAJDQn-A99w5q21wDGtGQVZd0phaxJFPdY"></script>
-    
-<script type="text/javascript"
-        src="/static/coordinate_picker/coordinate_picker.js">
-</script>
-<link type="text/css"
-      rel="stylesheet"
-      media="screen"
-      href="/static/coordinate_picker/coordinate_picker.css">
-<link href="/static/libs/bootstrap3-dialog/iris-bootstrap3-dialog.css"
-      rel="stylesheet"
-      type="text/css" />
-<script type="text/javascript" src="/static/libs/bootstrap3-dialog/js/bootstrap-dialog.min.js"></script>
-
-
-<fieldset>
-  <legend>Location:</legend>
-
-
-  <div class="row">
-    <div class="col-xs-4">
-      <label class="radio"> All:</label>
-    </div>
-    <div class="col-xs-8">
-      <input type="radio" id="locall-check" name="_loctype" value="all" checked />
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="col-xs-4">
-      <label class="radio">Lat/Lon Box:</label>
-    </div>
-    <div class="col-xs-8">
-      <input type="radio" id="maxlat-check" name="_loctype" value="box" />
-    </div>
-  </div>
-  
-  
-  <div class="row">
-    <div class="col-xs-4">
-      <label class="radio">Lat/Lon Radius:</label>
-    </div>
-    <div class="col-xs-8">
-      <input type="radio" id="maxradius-check" name="_loctype" value="radius" />
-    </div>
-  </div>
-  
-
-  
-    <!-- {{{ START: LOCATION BOX -->
-    <div id="maxlat-field" class="hide-if-inactive">
-      <div class="row">
-        <div class="text-center">
-          <label for="maxlat">Max Lat</label><br/>
-          <input class="form-control"
-             type="text"
-             id="maxlat"
-             name="maxlat"
-             size="4"
-             placeholder=49.0 />
-        </div>
-        <div class="text-center">
-          <label for="minlon">Min Lon</label>
-          <input class="form-control"
-             type="text"
-             id="minlon"
-             name="minlon"
-             size="4"
-             placeholder=-110.0 />
-          <button id="locbox-coordinates" class="btn btn-default" type="button">Map</button>
-          <input class="form-control"
-             type="text"
-             id="maxlon"
-             name="maxlon"
-             size="4"
-             placeholder=-87.0 />
-          <label for="maxlon">Max Lon</label>
-        </div>
-        <div class="text-center">
-          <input class="form-control"
-             type="text"
-             id="minlat"
-             name="minlat"
-             size="4"
-             placeholder=32.0 /><br/>
-          <label for="minlat">Min Lat</label>
-        </div>
-      </div>
-    </div>
-    <script lang="javascript">
-    $(function() {
-      $("#maxlat-field").coordinate_picker({
-        openBtn: $("#locbox-coordinates"),
-        drawingModes: 'rect',
-        nsewInputs: [$('#maxlat'),
-                     $('#minlat'),
-                     $('#maxlon'),
-                     $('#minlon')]
-      });
-    });
-    </script>
-  
-  <!-- }}} END: LOCATION BOX -->
-
-  <!-- {{{ START: LOCATION RADIUS -->
-  
-  <div id="maxradius-field" class="hide-if-inactive">
-    <div class="row">
-      <div class="col-xs-4 col-xs-offset-1">
-          <label for="lat">Lat:</label>
-      </div>
-      <div class="col-xs-7">
-          <input class="form-control"
-                 type="text"
-                 id="lat"
-                 name="lat"
-                 size="5"
-                 placeholder=40.0 />
-      </div>
-      <div class="col-xs-4 col-xs-offset-1">
-          <label for="lon">Lon:</label>
-      </div>
-      <div class="col-xs-7">
-          <input class="form-control"
-                 type="text"
-                 id="lon"
-                 name="lon"
-                 size="5"
-                 placeholder=-100.0 />
-      </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-4 col-xs-offset-1">
-          <label for="minradius">Min Radius:</label>
-        </div>
-        <div class="col-xs-7">
-          <input class="form-control"
-                 type="text"
-                 id="minradius"
-                 name="minradius"
-                 size="5"
-                 placeholder=0.0 />
-        </div>
-        <div class="col-xs-4 col-xs-offset-1">
-          <label for="maxradius">Max Radius:</label>
-        </div>
-        <div class="col-xs-7">
-          <input class="form-control"
-                 type="text"
-                 id="maxradius"
-                 name="maxradius"
-                 size="5"
-                 placeholder=30.0 />
-        </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <button id="locradius-coordinates" class="btn btn-default" type="button">Map</button>
-      </div>
-    </div>
-    <script lang="javascript">
-    $(function() {
-      $("#maxradius-field").coordinate_picker({
-        openBtn: $("#locradius-coordinates"),
-        drawingModes: 'circle',
-        crInputs: [$('#lat'),
-                     $('#lon'),
-                     $('#maxradius')]
-      });
-    });
-    </script>
-  
-  <!-- }}} END: LOCATION RADIUS -->
-
-
-</fieldset>
-
-
-
-        <fieldset>
-          <legend>Additional Options:</legend>
-
-          <!-- {{{ START: ADDITIONAL OPTIONS -->
-
-          <!-- {{{ START: INCLUDE RESTRICTED CHANNELS -->
-          <div id="includerestricted-row" class="row">
-            <div class="col-xs-7">
-                <label>Include Restricted Channels:</label>
-            </div>
-            <div class="col-xs-5">
-              <label class="radio inline">
-                  <input type="radio" name="includerestricted" id="includerestricted_true" value="" checked> Yes
-              </label>
-              <label class="radio inline">
-                  <input type="radio" name="includerestricted" id="includerestricted_false" value="false"> No
-              </label>
-            </div>
-          </div>
-          <!-- }}} END: INCLUDE RESTRICTED CHANNELS -->
-
-          <!-- {{{ START: INCLUDE COMMENTS -->
-          <div id="includecomments-row" class="row">
-            <div class="col-xs-7">
-              <label for="includecomments">Include Comments:</label>
-            </div>
-            <div class="col-xs-5">
-              <label class="radio inline">
-                <input type="radio" id="includecomments_true" name="includecomments" value="true" checked /> True
-              </label>
-              <label class="radio inline">
-                <input type="radio" id="includecomments_false" name="includecomments" value="false" /> False
-              </label>
-            </div>
-          </div>
-          <!-- }}} END: INCLUDE COMMENTS -->
-
-          <!-- {{{ START: INCLUDE AVAILABILITY -->
-          <div id="includeavailability-row" class="row">
-            <div class="col-xs-7">
-              <label for="includeavailability">Include Data Availability:</label>
-            </div>
-            <div class="col-xs-5">
-              <input type="checkbox"
-                     id="includeavailability"
-                     name="includeavailability"
-                     value="true" />
-            </div>
-          </div>
-          <!-- }}} END: INCLUDE AVAILABILITY -->
-
-          <!-- {{{ START: MATCH TIMESERIES -->
-          <div id="matchtimeseries-row" class="row">
-            <div class="col-xs-7">
-              <label for="matchtimeseries">Line up availabilities with available data:</label>
-            </div>
-            <div class="col-xs-5">
-              <input type="checkbox"
-                     id="matchtimeseries"
-                     name="matchtimeseries"
-                     value="true" />
-            </div>
-          </div>
-          <!-- }}} END: MATCH TIMESERIES -->
-
-
-          <!-- }}} END: ADDITIONAL OPTIONS -->
-
-        </fieldset>
-
-      </div>
-
-    </div>
-
-    <!-- {{{ START: HIDDEN FIELDS -->
-    <input type="hidden"
-           name="nodata"
-           id="nodata"
-           value="404" />
-    <!-- }}} END: HIDDEN FIELDS -->
-
   </form>
-  <!-- }}} END: FORM -->
-
-  <div class="alert alert-warning">
-    <p><strong>Click the link:</strong></p>
-    <p><a id="url" target="_blank"></a></p>
-  </div>
-
-  <p><a
-     id="nodatapopover"
-     title="About the <strong>nodata</strong> parameter"
-     data-content="The <strong>nodata=404</strong> parameter is automatically appended to the URL string. This is due to how web services respond by default to requests from a web-based client. More information is available in the <strong>Usage</strong> window."
-     role="button">What is the nodata=404 URL parameter?</a></p>
-
-  <div id="dialog"
-       class="modal fade"
-       tabindex="-1"
-       role="dialog"
-       aria-labelledby="myModalLabel"
-       aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <!-- {{{ START: HELP -->
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3 class="modal-title" id="myModalLabel">Usage</h3>
-          </div>
-          <div class="modal-body">
-            <table class="table table-bordered table-striped table-condensed">
-              <tr>
-                <th>Network</th>
-                <td>Network code or virtual network code, wildcards or lists.</td>
-              </tr>
-              <tr>
-                <th>Station</th>
-                <td>Up to 5 character station code, wildcards or lists.</td>
-              </tr>
-              <tr>
-                <th>Location</th>
-                <td>2 character location identifier, wildcards or lists.</td>
-              </tr>
-              <tr>
-                <th>Channel</th>
-                <td>3 character channel codes, wildcards or lists.</td>
-              </tr>
-              <tr>
-                <th>Wildcards</th>
-                <td>The network, station, location and channel fields
-                may contain the <code>*</code> or <code>?</code>
-                wildcards with the following meaning:
-                <ul class="list-unstyled">
-                  <li><code>*</code> &ndash; matches zero to many characters</li>
-                  <li><code>?</code> &ndash; matches a single character</li>
-                </ul>
-                <u>Network wild card is not supported when level=resp</u></td>
-              </tr>
-              <tr>
-                <th>Lists</th>
-                <td>The network, station, location and channel
-                fields may contain a comma-separated list,
-                examples include <code>BHE,BHZ</code>
-                or <code>BH*,LH*</code>.</td>
-              </tr>
-              <tr>
-                <th>Start Date</th>
-                <td>Station information must start on
-                or before the date specified.<br/>
-                Specify dates as: YYYY-MM-DD (e.g. "2010-06-14") </td>
-              </tr>
-              <tr>
-                <th>End Date</th>
-                <td>Station information must end on
-                or before the date specified.<br/>
-                Specify dates as: YYYY-MM-DD (e.g. "2010-06-14") </td>
-              </tr>
-              <tr>
-                <th>Level</th>
-                <td>Choose the level of granularity for the
-                information returned, can be network, station,
-                channel or response level.</td>
-              </tr>
-              <tr>
-                <th>Format</th>
-                <td>Specify output format.</td>
-              </tr>
-              <tr>
-                <th>Start Before</th>
-                <td>Station information must have started
-                before the date specified.</td>
-              </tr>
-              <tr>
-                <th>Start After</th>
-                <td>Station information must have started
-                after the date specified.</td>
-              </tr>
-              <tr>
-                <th>End Before</th>
-                <td>Station information must have ended
-                before the date specified.</td>
-              </tr>
-              <tr>
-                <th>End After</th>
-                <td>Station information must have ended
-                after the date specified.</td>
-              </tr>
-              <tr>
-                <th>Updated After</th>
-                <td>Return events updated since the given date.</td>
-              </tr>
-              <tr>
-                <th>Sensor</th>
-                <td>Select matching sensor descriptions. Sub-string
-                match is <strong>case-insensitive</strong> and may be specified with
-                wildcards and lists. The match is against the string
-                in the <code>Sensor::Description</code> schema location.</td>
-              </tr>
-              <tr>
-                <th>Lat/Lon Box</th>
-                <td>Return events within a lat/lon range.</td>
-              </tr>
-              <tr>
-                <th>Lat/Lon Radius</th>
-                <td>Return events a given distance (in degrees) of a location.</td>
-              </tr>
-              <tr>
-                <th>Include Restricted Channels</th>
-                <td>Specify whether results should include
-                information relating to restricted channels.</td>
-              </tr>
-              <tr>
-                <th>Include Data Availability</th>
-                <td>Specify if results should
-                include information about time series
-                data availability at the channel level.</td>
-              </tr>
-              <tr>
-                <th>Include Comments</th>
-                <td>Specify if results should include station and
-                channel comments. By default this is <code>true</code>.
-                </td>
-              </tr>
-              <tr>
-                <th>Line up availabilities with available data</th>
-                <td>Retrieve only metadata that is likely to match
-                available time series data.</td>
-              </tr>
-              <tr>
-                <th>Nodata</th>
-                <td>If no data is returned by the service, return
-                a <strong>404</strong> response rather than the
-                default <strong>204</strong>.<br/>
-                <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">
-                Learn more about HTTP response codes</a>.</td>
-              </tr>
-            </table>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
-          </div>
-        <!-- }}} END: HELP  -->
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div>
-
-  <script type="text/javascript">
-  $(function() {
-    // Init builder
-    $("#builder-form").builder();
-    $("#nodatapopover").popover({
-      html:true,
-      trigger:'hover',
-    });
-    // Location radio buttons depend on the row being enabled
-    $('input:radio[name="_loctype"]').builder('dependsOn', $("#loc-row"));
-    // Change in any radio button acts as a change in all of them
-    $('input:radio[name="_loctype"]').builder('updateOnChange', $('input:radio[name="_loctype"]'));
-    // Inputs in location-related subsections depend on the subsections themselves
-    $("input", $("#maxlat-field")).builder('dependsOn', $("#maxlat-field"));
-    $("input", $("#maxradius-field")).builder('dependsOn', $("#maxradius-field"));
-    $("#matchtimeseries-row").builder(
-            'dependsOn',
-            $("#includeavailability"),
-            function() {
-                return $("#includeavailability").prop('checked');
-            });
-    $("#matchtimeseries-row").builder('updateOnChange', $("#includeavailability"));
-  });
-  </script>
-
-<!-- }}} END: WS-STATION -->
-
-  
-
-  <hr/>
-<h3>Problems with this service?</h3>
-<p>
-  Please send an email report of which service you were using, your URL query, and any error feedback to:
-  <br/>
-  <a href="mailto:ws-issues@iris.washington.edu">ws-issues AT iris.washington.edu</a>
-  <br/>
-  <em>We will address your issue as soon as possible.</em>
-</p>
-
-
-                  </div>
-
-                
-
-              </div>
-
-            
-
-
-    
-
-
-
-    </div>
-
-    
-
-<div class="iris-purple blur" style="border-top: 1px solid #b3b3b3; margin: 7rem 0 0 0; padding-bottom: 1rem;">
-  <div class="container" id="footer">
-    <div class="text-center">
-      <div>
-        <a target="_blank" alt="NSF logo" title="NSF link" href="https://nsf.gov/"><img
-            height="80" src="https://www.iris.edu/hq/images/layout/logos/footer-nsf-x1.png" srcset="https://www.iris.edu/hq/images/layout/logos/footer-nsf-x1.png 1x,
-            https://www.iris.edu/hq/images/layout/logos/footer-nsf-x1.5.png 1.5x,
-            https://www.iris.edu/hq/images/layout/logos/footer-nsf-x2.png 2x"></a>
-        <div class="logo-v-line"></div>
-        <a target="_blank" alt="SAGE logo" title="SAGE link" href="https://www.iris.edu/hq/sage"><img
-            height="80" src="https://www.iris.edu/hq/images/layout/logos/footer-sage-x1.png" srcset="https://www.iris.edu/hq/images/layout/logos/footer-sage-x1.png 1x,
-            https://www.iris.edu/hq/images/layout/logos/footer-sage-x1.5.png 1.5x,
-            https://www.iris.edu/hq/images/layout/logos/footer-sage-x2.png 2x"></a>
-        <div class="logo-v-line"></div>
-        <a target="_blank" alt="IRIS logo" title="IRIS link" href="https://www.iris.edu/hq/"><img
-            height="80" src="https://www.iris.edu/hq/images/layout/logos/footer-iris-x1.png" srcset="https://www.iris.edu/hq/images/layout/logos/footer-iris-x1.png 1x,
-            https://www.iris.edu/hq/images/layout/logos/footer-iris-x1.5.png 1.5x,
-            https://www.iris.edu/hq/images/layout/logos/footer-iris-x2.png 2x"></a>
-      </div>
-      <div>
-        The SAGE Facility is operated by IRIS via funding from the National Science Foundation
-      </div>
-    </div><!-- #footer-bottom -->
-  </div><!-- #footer -->
-</div>
-
-
-
-  
-
-  </body>
+</body>
 </html>
