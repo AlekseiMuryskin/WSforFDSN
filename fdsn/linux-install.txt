@@ -1,0 +1,35 @@
+Установка waveTapc.
+
+Приложения в папках linux_... требуют установки библиотеки Qt 4-ой (для waveTapc4) или 5-ой версии (для waveTapc5) и библиотеки ncursesw (с поддержкой юникодных символов).
+Также, в 64-битной системе, в зависимости от битности приложения (32 или 64 бита), нужно ставить библиотеки для соотв. архитектуры.
+
+Для поддержки подключения к БД WSG в различных СУБД должны быть установлены драйверы от самих этих СУБД (libmysqlclient и т.д.), а также драйверы соотв. версии Qt. Пакеты могут называться примерно так (пример из Debian 9.8, драйвер PostgreSql):
+libqt4-sql-psql
+libqt5sql5-psql
+Приложения будут работать и без этих драйверов, но не будет возможности подключения в соотв. СУБД.
+
+Результат выполнения команд, показывающих зависимости от динамических библиотек:
+
+objdump -p ./waveTapc4 | grep NEEDED
+  NEEDED               libz.so.1
+  NEEDED               libncursesw.so.6
+  NEEDED               libtinfo.so.6
+  NEEDED               libQtSql.so.4
+  NEEDED               libQtCore.so.4
+  NEEDED               libpthread.so.0
+  NEEDED               libstdc++.so.6
+  NEEDED               libm.so.6
+  NEEDED               libgcc_s.so.1
+  NEEDED               libc.so.6
+
+objdump -p ./waveTapc5 | grep NEEDED
+  NEEDED               libz.so.1
+  NEEDED               libncursesw.so.6
+  NEEDED               libtinfo.so.6
+  NEEDED               libQt5Sql.so.5
+  NEEDED               libQt5Core.so.5
+  NEEDED               libpthread.so.0
+  NEEDED               libstdc++.so.6
+  NEEDED               libm.so.6
+  NEEDED               libgcc_s.so.1
+  NEEDED               libc.so.6
