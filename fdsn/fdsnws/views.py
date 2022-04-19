@@ -2,8 +2,10 @@ from django.shortcuts import render
 from obspy.clients.fdsn import Client
 from obspy import UTCDateTime
 from django.http import HttpResponse
-import os
+import os, sys
 import zipfile
+
+
 
 def GetFileName(st):
     filename = "GSRAS_"
@@ -22,6 +24,9 @@ def ListFilterW(lst):
 
 CSRF_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SECURE = True
+
+
+
 
 def main_page(request):
     return render(request,'fdsnws/main_page.html',{})
@@ -60,7 +65,10 @@ def dataselect(request):
 
 
         if 'css3'in request.POST['format']:
-            os.system("wavetapc -d=w {}".format(FName))
+            if 'win' in sys.platform:
+                os.system("wavetapc -d=w {}".format(FName))
+            else:
+                os.system("./waveTapc -d=w {}".format(FName))
 
             flist=ListFilterW(os.listdir())
             with zipfile.ZipFile('{}.zip'.format(FName), 'w', zipfile.ZIP_DEFLATED) as zipf:
