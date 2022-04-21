@@ -1,0 +1,56 @@
+2022-04-21 09:20:40,314 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 09:20:55,118 django.request WARNING  Not Found: /favicon.ico
+2022-04-21 09:24:31,115 django.request ERROR    Internal Server Error: /dataselect/
+Traceback (most recent call last):
+  File "D:\git\WSforFDSN\myvenv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "D:\git\WSforFDSN\myvenv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\git\WSforFDSN\fdsn\fdsnws\views.py", line 43, in dataselect
+    starttime = UTCDateTime(startdate + "T" + starttime)
+  File "D:\git\WSforFDSN\myvenv\lib\site-packages\obspy\core\utcdatetime.py", line 358, in __init__
+    dt = datetime.datetime(*args, **kwargs)
+TypeError: an integer is required (got type str)
+2022-04-21 09:26:30,715 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 09:26:36,820 django.request ERROR    Internal Server Error: /dataselect/
+Traceback (most recent call last):
+  File "D:\git\WSforFDSN\myvenv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "D:\git\WSforFDSN\myvenv\lib\site-packages\django\utils\deprecation.py", line 119, in __call__
+    response = self.process_response(request, response)
+  File "D:\git\WSforFDSN\myvenv\lib\site-packages\django\middleware\clickjacking.py", line 26, in process_response
+    if response.get('X-Frame-Options') is not None:
+AttributeError: 'str' object has no attribute 'get'
+2022-04-21 09:30:17,253 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 09:30:21,790 django.request WARNING  Not Found: /favicon.ico
+2022-04-21 09:30:49,955 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 09:30:55,014 django.request ERROR    Internal Server Error: /dataselect/
+Traceback (most recent call last):
+  File "D:\git\WSforFDSN\fdsn\fdsnws\views.py", line 44, in dataselect
+    starttime = UTCDateTime(startdate + "T" + starttime)
+  File "D:\git\WSforFDSN\myvenv\lib\site-packages\obspy\core\utcdatetime.py", line 358, in __init__
+    dt = datetime.datetime(*args, **kwargs)
+TypeError: an integer is required (got type str)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\git\WSforFDSN\myvenv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "D:\git\WSforFDSN\myvenv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\git\WSforFDSN\fdsn\fdsnws\views.py", line 94, in dataselect
+    return render(request,'fdsnws/error.html',{"Error"})
+  File "D:\git\WSforFDSN\myvenv\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\git\WSforFDSN\myvenv\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "D:\git\WSforFDSN\myvenv\lib\site-packages\django\template\backends\django.py", line 59, in render
+    context = make_context(context, request, autoescape=self.backend.engine.autoescape)
+  File "D:\git\WSforFDSN\myvenv\lib\site-packages\django\template\context.py", line 268, in make_context
+    raise TypeError('context must be a dict rather than %s.' % context.__class__.__name__)
+TypeError: context must be a dict rather than set.
+2022-04-21 09:31:36,935 django.utils.autoreload INFO     D:\git\WSforFDSN\fdsn\fdsnws\views.py changed, reloading.
+2022-04-21 09:31:38,391 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 09:32:30,282 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-21 09:32:33,446 django.request WARNING  Not Found: /favicon.ico
