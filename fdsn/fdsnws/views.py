@@ -41,8 +41,12 @@ def dataselect(request):
             endtime = request.POST['endtime']
             startdate = request.POST['startdate']
             enddate = request.POST['enddate']
+
             starttime = UTCDateTime(startdate + "T" + starttime)
             endtime = UTCDateTime(enddate + "T" + endtime)
+
+
+
             if len(request.POST['network'])>0:
                 net = request.POST['network']
             else:
@@ -60,7 +64,8 @@ def dataselect(request):
             else:
                 ch = "*"
 
-            nodata = request.POST['nodata']
+            #nodata = request.POST['nodata']
+
             st = client.get_waveforms(net, sta, loc, ch, starttime, endtime,attach_response=True)
             FName=GetFileName(st,request.POST['format'])
             st.write(FName,format="MSEED")
