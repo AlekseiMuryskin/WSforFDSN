@@ -45,8 +45,6 @@ def dataselect(request):
             starttime = UTCDateTime(startdate + "T" + starttime)
             endtime = UTCDateTime(enddate + "T" + endtime)
 
-
-
             if len(request.POST['network'])>0:
                 net = request.POST['network']
             else:
@@ -71,7 +69,7 @@ def dataselect(request):
             st.write(FName,format="MSEED")
 
 
-            if 'css3'in request.POST['format']:
+            if 'css3' in request.POST['format'].lower():
                 if 'win' in sys.platform:
                     os.system("wavetapc -d=w {}".format(FName))
                 else:

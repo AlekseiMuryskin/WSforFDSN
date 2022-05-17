@@ -9,12 +9,12 @@ param={
     'station':'ARTI',
     'location':'00',
     'channel':'BHZ',
-    'format':'miniseed'
+    'format':'css3'
 }
 
 resp = requests.post("http://127.0.0.1:8000/dataselect/", data=param)
 
-with open('resp.msd','wb') as f:
+with open('resp.zip','wb') as f:
     f.write(resp.content)
 
 
